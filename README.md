@@ -86,6 +86,20 @@ WebUI 的「自定义规则 → 人格配置」和本插件写的是同一个字
 - 同一会话并发首次写入时可能重复写一次，结果幂等。
 - 只处理群聊；私聊不生效。
 
+## 开发与测试
+
+接口按 AstrBot 4.11.0 与 4.29.4 的源码核对，4.11+ 的 `on_waiting_llm_request`、`sp.session_get/put`、`StarTools` 均已具备。
+
+不依赖 AstrBot 运行时的逻辑测试：
+
+```bash
+python tests/test_logic.py
+```
+
+覆盖写入、保留其他会话字段、换绑、外部改动、解绑恢复、成员隔离、重载恢复、启动对账等场景。
+
+> 本插件依赖 AstrBot 内部的 `session_service_config` 存储格式。如果未来的 AstrBot 版本改动该结构，插件可能需要跟进适配。
+
 ## License
 
 MIT

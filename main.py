@@ -40,7 +40,7 @@ DATA_VERSION = 1
 
 def _group_key(event: AstrMessageEvent) -> str | None:
     """返回 ``平台实例ID:群号``，私聊或拿不到群号时返回 None。"""
-    group_id = (event.get_group_id() or "").strip()
+    group_id = str(event.get_group_id() or "").strip()
     if not group_id:
         return None
     return f"{event.get_platform_id()}:{group_id}"
@@ -54,6 +54,9 @@ def gpersona():
 class GroupPersonaPlugin(Star):
     def __init__(self, context: Context, config: AstrBotConfig | None = None):
         super().__init__(context, config)
+        # 4.29+ 的 Star 会注入插件专属 logger；更早的版本没有，回退到全局 logger。
+        if getattr(self, "logger", None) is None:
+            self.logger = logger
         self.conf = config or {}
         self.bindings: dict[str, str] = {}
         """``平台实例ID:群号`` -> 人格 ID。"""
