@@ -1,0 +1,24 @@
+name: astrbot_plugin_group_persona
+display_name: 群专属人格
+desc: 给指定群聊强制绑定专属人格，优先级高于系统默认人格、/persona 与已有自定义规则；按会话写入，开启「隔离对话」后也能让整个群统一人格。解绑或卸载时自动恢复被覆盖的原规则。
+short_desc: 给指定群聊绑定专属人格
+version: v1.0.0
+author: xZhongjie
+repo: https://github.com/xZhongjie/astrbot_plugin_group_persona
+astrbot_version: ">=4.11.0"
+support_platforms:
+  - aiocqhttp
+  - telegram
+  - discord
+  - kook
+  - slack
+  - lark
+  - dingtalk
+  - qq_official
+  - qq_official_webhook
+  - wecom
+  - wecom_ai_bot
+  - matrix
+  - misskey
+  - satori
+  - line

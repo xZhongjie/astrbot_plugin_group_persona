@@ -1,0 +1,20 @@
+{
+  "enabled": {
+    "description": "插件总开关",
+    "type": "bool",
+    "default": true,
+    "hint": "关闭后不再写入强制人格；已写入的规则会在插件卸载、重载或 AstrBot 正常退出时按「卸载时恢复」设置处理。"
+  },
+  "restore_on_unload": {
+    "description": "卸载/重载时恢复原人格规则",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后，插件被卸载或重载时会把被覆盖的会话人格还原为接管前的值；关闭则保留强制人格（可能留下“幽灵规则”）。"
+  },
+  "log_applied": {
+    "description": "写入时记录日志",
+    "type": "bool",
+    "default": false,
+    "hint": "排查问题时打开；正常使用建议关闭，避免刷屏。"
+  }
+}
