@@ -32,6 +32,13 @@ from astrbot.api import AstrBotConfig, logger, sp
 from astrbot.api.event import AstrMessageEvent, filter
 from astrbot.api.star import Context, Star, StarTools
 
+try:
+    from astrbot.core.star.filter.command import GreedyStr
+except Exception:  # pragma: no cover - 兼容旧版本 AstrBot
+
+    class GreedyStr(str):
+        """旧版本回退：退化为普通字符串。"""
+
 PLUGIN_NAME = "astrbot_plugin_group_persona"
 SESSION_CONFIG_KEY = "session_service_config"
 DATA_FILE_NAME = "bindings.json"
@@ -184,7 +191,7 @@ class GroupPersonaPlugin(Star):
 
     @gpersona.command("bind", alias={"绑定"})
     @filter.permission_type(filter.PermissionType.ADMIN)
-    async def gpersona_bind(self, event: AstrMessageEvent, persona_id: str = ""):
+    async def gpersona_bind(self, event: AstrMessageEvent, persona_id: GreedyStr = ""):
         """把当前群绑定到指定人格（需要管理员）。"""
         key = _group_key(event)
         if not key:
